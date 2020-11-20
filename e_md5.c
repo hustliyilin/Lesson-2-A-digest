@@ -72,21 +72,6 @@ static int bind(ENGINE *e, const char *id)
 {
   int ret = 0;
 
-  static int loaded = 0;
-
-  if (id && strcmp(id, engine_id)) {
-    fprintf(stderr, "MD5 engine called with the unexpected id %s\n", id);
-    fprintf(stderr, "The expected id is %s\n", engine_id);
-    goto end;
-  }
-
-  if (loaded) {
-    fprintf(stderr, "MD5 engine already loaded\n");
-    goto end;
-  }
-
-  loaded = 1;
-
   if (!ENGINE_set_id(e, engine_id)) {
     fprintf(stderr, "ENGINE_set_id failed\n");
     goto end;
